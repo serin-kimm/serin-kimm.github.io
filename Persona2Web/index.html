@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Persona2Web: A benchmark for evaluating personalized web agents on the real open web.">
+  <meta property="og:title" content="Persona2Web">
+  <meta property="og:description" content="A benchmark for evaluating personalized web agents on the real open web.">
+  <meta property="og:url" content="https://persona2web.github.io/">
+  <meta name="twitter:title" content="Persona2Web">
+  <meta name="twitter:description" content="A benchmark for evaluating personalized web agents on the real open web.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="keywords" content="Persona2Web, personalized web agents, personalization, benchmark, large language models, web agents">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Persona2Web: Benchmark for Personalized Web Agents</title>
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+</head>
+<body>
+  <section class="hero project-hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <p class="eyebrow">Personalized Web Agent Benchmark</p>
+            <h1 class="title is-1 publication-title">Persona2Web</h1>
+            <p class="subtitle is-4 publication-subtitle">
+              Evaluating personalized web agents on the real open web through clarify-to-personalize queries.
+            </p>
+
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2602.17003" target="_blank" rel="noreferrer" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-file-alt"></i></span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://github.com/serin-kimm/Persona2Web" target="_blank" rel="noreferrer" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Code</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a class="external-link button is-normal is-rounded is-dark" aria-disabled="true">
+                  <span class="icon"><i class="fas fa-database"></i></span>
+                  <span>Dataset</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <figure class="image main-figure intro-figure">
+          <img src="static/images/intro_fig.png" alt="Persona2Web overview">
+        </figure>
+        <h2 class="subtitle has-text-centered intro-copy">
+          Large language models have advanced web agents, yet current agents lack personalization capabilities.
+          In real-world scenarios, users rarely specify every detail of their intent, assuming that systems understand their implicit context.
+          To be genuinely practical, web agents must be able to interpret ambiguous queries by inferring user preferences and contexts.
+          <strong>Persona2Web</strong> is the first benchmark for evaluating personalized web agents on the real open web, built upon the
+          <strong class="has-text-primary">clarify-to-personalize</strong> principle.
+        </h2>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Why Persona2Web?</h2>
+      <div class="columns is-multiline feature-grid">
+        <div class="column is-half">
+          <div class="feature-item">
+            <span class="icon is-large"><i class="fas fa-globe fa-2x"></i></span>
+            <h3 class="title is-5">Personalization on the Real Open Web</h3>
+            <p>Persona2Web is specifically designed for evaluating personalization capability of web agents on the real open web.</p>
+          </div>
+        </div>
+        <div class="column is-half">
+          <div class="feature-item">
+            <span class="icon is-large"><i class="fas fa-history fa-2x"></i></span>
+            <h3 class="title is-5">Implicit User History</h3>
+            <p>Persona2Web provides rigorously constructed user histories that reveal user preferences in implicit and indirect ways over long time spans, rather than providing them explicitly at once.</p>
+          </div>
+        </div>
+        <div class="column is-half">
+          <div class="feature-item">
+            <span class="icon is-large"><i class="fas fa-comments fa-2x"></i></span>
+            <h3 class="title is-5">Clarify-to-Personalize Queries</h3>
+            <p>Persona2Web deliberately embeds ambiguity, requiring agents to infer implicit contexts from user history without explicit cues.</p>
+          </div>
+        </div>
+        <div class="column is-half">
+          <div class="feature-item">
+            <span class="icon is-large"><i class="fas fa-route fa-2x"></i></span>
+            <h3 class="title is-5">Reasoning-aware Evaluation</h3>
+            <p>Beyond simple task completion, Persona2Web examines full trajectories and reasoning traces through structured rubrics to distinguish personalization failures from navigation failures.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Constructing Persona2Web</h2>
+      <figure class="image main-figure method-figure">
+        <img src="static/images/main_fig.png" alt="Persona2Web construction pipeline">
+      </figure>
+      <div class="content construction-steps">
+        <p>
+          Persona2Web is constructed through a multi-stage generation pipeline that starts from 50 distinct user profiles with demographic information and domain-specific preferences. Based on these profiles, event seeds are generated to define recurring activity patterns, then decomposed into web actions and dispersed across different temporal points over a year. The resulting user history is structured with timestamp, type, object, and website, so that preferences are revealed implicitly through behavioral patterns rather than explicit statements. Finally, query sets are created by first generating clear queries with all explicit cues, then masking website and preference constraints to produce ambiguous queries under the clarify-to-personalize principle.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content has-text-centered">
+            <p>
+              This page was built using the
+              <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank" rel="noreferrer">Academic Project Page Template</a>,
+              adopted from the <a href="https://nerfies.github.io" target="_blank" rel="noreferrer">Nerfies</a> project page.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
