@@ -1,53 +1,108 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="utf-8">
-  <meta name="description" content="Persona2Web: A benchmark for evaluating personalized web agents on the real open web.">
-  <meta property="og:title" content="Persona2Web">
-  <meta property="og:description" content="A benchmark for evaluating personalized web agents on the real open web.">
-  <meta property="og:url" content="https://persona2web.github.io/">
-  <meta name="twitter:title" content="Persona2Web">
-  <meta name="twitter:description" content="A benchmark for evaluating personalized web agents on the real open web.">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description" content="Persona2Web">
+  <meta property="og:title" content="Persona2Web"/>
+  <meta property="og:description" content="Persona2Web"/>
+  <meta property="og:url" content="https://serin-kimm.github.io/Persona2Web/"/>
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <meta property="og:image" content="static/image/intro_fig.png" />
+  <!-- <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/> -->
+
+
+  <meta name="twitter:title" content="Persona2Web"/>
+  <meta name="twitter:description" content="Persona2Web"/>
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+  <meta name="twitter:image" content="static/images/intro_fig.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="keywords" content="Persona2Web, personalized web agents, personalization, benchmark, large language models, web agents">
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="Persona2Web, Personalization, Web agent, Benchmark"/>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Persona2Web: Benchmark for Personalized Web Agents</title>
-  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <title>Persona2Web: Benchmarking Personalized Web Agents for Contextual Reasoning with User History</title>
+  <!-- <link rel="icon" type="image/x-icon" href="static/images/favicon.ico"> -->
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+
   <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
   <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
   <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
 </head>
 <body>
-  <section class="hero project-hero">
+
+
+  <section class="hero">
     <div class="hero-body">
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <p class="eyebrow">Personalized Web Agent Benchmark</p>
-            <h1 class="title is-1 publication-title">Persona2Web</h1>
-            <p class="subtitle is-4 publication-subtitle">
-              Evaluating personalized web agents on the real open web through clarify-to-personalize queries.
-            </p>
+          <h1 class="title is-1 publication-title">Persona2Web: Benchmarking Personalized Web Agents for Contextual Reasoning with User History</h1>
+            <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=Gxx8a3sAAAAJ&hl=ko&oi=ao" target="_blank">Serin Kim</a>,</span>
+                <span class="author-block">
+                  <a href="https://augustinlib.github.io/" target="_blank">Sangam Lee</a>,</span>
+                  <span class="author-block">
+                    <a href="https://donalee.github.io/" target="_blank">Dongha Lee</a><sup>†</sup></span>
 
-            <div class="publication-links">
-              <span class="link-block">
-                <a href="https://arxiv.org/abs/2602.17003" target="_blank" rel="noreferrer" class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon"><i class="fas fa-file-alt"></i></span>
-                  <span>Paper</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a href="https://github.com/serin-kimm/Persona2Web" target="_blank" rel="noreferrer" class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon"><i class="fab fa-github"></i></span>
-                  <span>Code</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a class="external-link button is-normal is-rounded is-dark" aria-disabled="true">
-                  <span class="icon"><i class="fas fa-database"></i></span>
+                  </div>
+
+                  <div class="is-size-5 publication-authors">
+                    <div class="is-size-6" style="margin-bottom: 10px;">
+                      <span class="author-block"><sup>†</sup>Corresponding author</span>
+                    </div>
+                    <span class="author-block">Yonsei University</span>
+                  </div>
+
+                  <div class="column has-text-centered">
+                    <div class="publication-links">
+                    <!-- ArXiv abstract Link -->
+                    <span class="link-block">
+                      <a href="https://arxiv.org/abs/2602.17003" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="ai ai-arxiv"></i>
+                      </span>
+                      <span>Paper</span>
+                    </a>
+                    </span>
+
+
+                  <!-- Github link -->
+                  <span class="link-block">
+                    <a href="https://github.com/serin-kimm/Persona2Web" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+
+                <!-- ArXiv abstract Link -->
+                <span class="link-block">
+                  <a href="./" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <span style="font-weight: bold; font-size: 1.2em;">🤗</span>
+                  </span>
                   <span>Dataset</span>
                 </a>
               </span>
@@ -56,7 +111,8 @@
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
   <section class="hero teaser">
     <div class="container is-max-desktop">

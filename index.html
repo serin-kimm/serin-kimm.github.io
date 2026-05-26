@@ -1,144 +1,579 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="description" content="Persona2Web: A benchmark for evaluating personalized web agents on the real open web.">
-  <meta property="og:title" content="Persona2Web">
-  <meta property="og:description" content="A benchmark for evaluating personalized web agents on the real open web.">
-  <meta property="og:url" content="https://persona2web.github.io/">
-  <meta name="twitter:title" content="Persona2Web">
-  <meta name="twitter:description" content="A benchmark for evaluating personalized web agents on the real open web.">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="keywords" content="Persona2Web, personalized web agents, personalization, benchmark, large language models, web agents">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Serin Kim — AI Researcher</title>
+<meta name="description" content="Personal page of Serin Kim, AI/NLP researcher working on personalized web agents and agent memory." />
 
-  <title>Persona2Web: Benchmark for Personalized Web Agents</title>
-  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
-  <link rel="stylesheet" href="static/css/bulma.min.css">
-  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
-  <link rel="stylesheet" href="static/css/index.css">
-  <script defer src="static/js/fontawesome.all.min.js"></script>
+<!-- Geist Mono only -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --bg:        #FFFFFF;
+    --ink:       #0A0A0A;
+    --ink-2:     #2E2E2E;
+    --ink-3:     #595959;
+    --ink-4:     #8A8A8A;
+    --ink-5:     #B5B5B5;
+    --rule:      #E6E6E6;
+    --rule-soft: #F0F0F0;
+    --placeholder: #FAFAFA;
+    --mono:      "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--mono);
+    font-size: 14px;
+    line-height: 1.7;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection { background: var(--ink); color: var(--bg); }
+
+  a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--ink-5);
+    padding-bottom: 1px;
+    transition: border-color .15s ease, color .15s ease;
+  }
+  a:hover { border-bottom-color: var(--ink); }
+
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 88px 32px 120px;
+  }
+
+  /* ============== HEADER ============== */
+  header.hero {
+    margin-bottom: 72px;
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 36px;
+    align-items: start;
+    animation: fade-up .6s ease both;
+  }
+
+  .hero-photo {
+    width: 120px;
+    height: 160px;
+    border: 1px solid var(--rule);
+    overflow: hidden;
+    background: var(--placeholder);
+    /* tiny placeholder pattern so the empty box looks intentional */
+    background-image:
+      linear-gradient(135deg, transparent 49.5%, var(--rule) 49.5% 50.5%, transparent 50.5%);
+    background-size: 12px 12px;
+    position: relative;
+  }
+  .hero-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  h1.name {
+    font-family: var(--mono);
+    font-weight: 500;
+    font-size: 30px;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin: 0 0 22px;
+    color: var(--ink);
+  }
+
+  .tagline {
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--ink-2);
+    max-width: 56ch;
+    margin: 0;
+  }
+  .tagline a {
+    color: var(--ink);
+    border-bottom: 1px solid var(--rule);
+  }
+  .tagline a:hover {
+    border-bottom-color: var(--ink);
+  }
+
+  .links {
+    margin-top: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 18px;
+    font-size: 13px;
+  }
+  .links a {
+    border-bottom: 1px solid var(--rule);
+    color: var(--ink-2);
+  }
+  .links a:hover { color: var(--ink); border-bottom-color: var(--ink); }
+
+  /* ============== SECTIONS ============== */
+  section {
+    margin-bottom: 56px;
+    animation: fade-up .6s ease both;
+  }
+  section:nth-of-type(1) { animation-delay: .08s; }
+  section:nth-of-type(2) { animation-delay: .16s; }
+  section:nth-of-type(3) { animation-delay: .24s; }
+  section:nth-of-type(4) { animation-delay: .32s; }
+
+  h2.section-title {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-4);
+    margin: 0 0 24px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  h2.section-title .num {
+    color: var(--ink-5);
+    font-weight: 400;
+  }
+
+  /* ============== RESEARCH INTERESTS ============== */
+  .research-desc {
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--ink-2);
+    margin: 0 0 18px;
+    width: 100%;
+    max-width: none;
+    text-wrap: pretty;
+  }
+  .research-desc-label {
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--ink-2);
+    margin: 0 0 8px;
+  }
+
+  .interest-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .interest-list li {
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--ink-2);
+    padding: 2px 0 2px 22px;
+    position: relative;
+  }
+  .interest-list li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--ink-5);
+    font-weight: 400;
+  }
+
+  /* ============== PUBLICATIONS ============== */
+  .pub-list { list-style: none; margin: 0; padding: 0; }
+
+  .pub {
+    padding: 22px 0;
+    border-bottom: 1px solid var(--rule-soft);
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+  .pub:first-child { padding-top: 4px; }
+  .pub:last-child { border-bottom: none; }
+
+  .pub-figure {
+    display: block;
+    width: 150px;
+    aspect-ratio: 4 / 3;
+    border: 1px solid var(--rule);
+    background: var(--placeholder);
+    overflow: hidden;
+    transition: border-color .2s ease;
+    /* placeholder pattern */
+    background-image:
+      linear-gradient(135deg, transparent 49.5%, var(--rule) 49.5% 50.5%, transparent 50.5%);
+    background-size: 10px 10px;
+  }
+  .pub-figure:hover { border-color: var(--ink-4); }
+  .pub-figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .pub-venue-tag {
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin: 0 0 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .pub-venue-tag .year {
+    color: var(--ink-4);
+    font-weight: 400;
+  }
+  .pub-venue-tag .venue-full {
+    color: var(--ink-4);
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0.02em;
+  }
+  .pub-venue-tag .dot {
+    color: var(--ink-5);
+  }
+
+  .pub-title {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.55;
+    margin: 0 0 6px;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+  }
+  .pub-title a {
+    border-bottom: none;
+    color: var(--ink);
+  }
+  .pub-title a:hover {
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .pub-authors {
+    font-size: 12.5px;
+    color: var(--ink-3);
+    margin: 0 0 8px;
+    line-height: 1.55;
+  }
+  .pub-authors strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .pub-authors a {
+    color: inherit;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  .pub-authors a:hover {
+    border-bottom: 1px solid currentColor;
+  }
+
+  .pub-meta {
+    font-size: 11.5px;
+    color: var(--ink-4);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 14px;
+    letter-spacing: 0.02em;
+  }
+  .pub-meta a {
+    border-bottom: 1px solid var(--rule);
+    color: var(--ink-3);
+  }
+  .pub-meta a:hover { color: var(--ink); border-bottom-color: var(--ink); }
+
+  .pub-status {
+    display: inline-block;
+    padding: 1px 7px;
+    border: 1px solid var(--rule);
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    border-radius: 2px;
+  }
+
+  /* ============== EDUCATION & EXPERIENCE (shared) ============== */
+  .row-list { list-style: none; margin: 0; padding: 0; }
+
+  .row {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 20px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .row:first-child { padding-top: 4px; }
+  .row:last-child { border-bottom: none; }
+
+  .row .when {
+    font-size: 11.5px;
+    color: var(--ink-4);
+    letter-spacing: 0.04em;
+    padding-top: 2px;
+  }
+  .row .what { font-size: 14px; line-height: 1.55; }
+  .row .title {
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .row .org {
+    color: var(--ink-3);
+    display: block;
+    font-size: 12.5px;
+    margin-top: 2px;
+  }
+  .row .note {
+    display: block;
+    color: var(--ink-4);
+    font-size: 12px;
+    margin-top: 4px;
+  }
+
+  /* ============== FOOTER ============== */
+  footer {
+    margin-top: 80px;
+    padding-top: 18px;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-4);
+  }
+
+  /* ============== ANIMATIONS ============== */
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ============== RESPONSIVE ============== */
+  @media (max-width: 600px) {
+    .wrap { padding: 56px 22px 80px; }
+
+    header.hero {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    .hero-photo {
+      width: 96px;
+      height: 128px;
+    }
+
+    .pub {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    .pub-figure {
+      width: 100%;
+      max-width: 240px;
+      aspect-ratio: 4 / 3;
+    }
+
+    .row { grid-template-columns: 1fr; gap: 4px; }
+    footer { flex-direction: column; gap: 6px; }
+  }
+</style>
 </head>
+
 <body>
-  <section class="hero project-hero">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered">
-          <div class="column has-text-centered">
-            <p class="eyebrow">Personalized Web Agent Benchmark</p>
-            <h1 class="title is-1 publication-title">Persona2Web</h1>
-            <p class="subtitle is-4 publication-subtitle">
-              Evaluating personalized web agents on the real open web through clarify-to-personalize queries.
-            </p>
+<div class="wrap">
 
-            <div class="publication-links">
-              <span class="link-block">
-                <a href="https://arxiv.org/abs/2602.17003" target="_blank" rel="noreferrer" class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon"><i class="fas fa-file-alt"></i></span>
-                  <span>Paper</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a href="https://github.com/serin-kimm/Persona2Web" target="_blank" rel="noreferrer" class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon"><i class="fab fa-github"></i></span>
-                  <span>Code</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a class="external-link button is-normal is-rounded is-dark" aria-disabled="true">
-                  <span class="icon"><i class="fas fa-database"></i></span>
-                  <span>Dataset</span>
-                </a>
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
+  <!-- ============== HEADER ============== -->
+  <header class="hero">
+    <!-- Profile photo: replace src with your image path, e.g. "images/profile.jpg" -->
+    <div class="hero-photo">
+      <img src="images/profile.jpg" alt="Serin Kim" onerror="this.style.display='none'" />
     </div>
+
+    <div class="hero-text">
+      <h1 class="name">Serin Kim</h1>
+
+      <p class="tagline">
+        I'm an M.S. student at the Graduate School of Artificial Intelligence,
+        Yonsei University, advised by Prof.
+        <a href="https://scholar.google.com/citations?user=driVwKwAAAAJ" target="_blank" rel="noopener">Dongha Lee</a>
+        in the
+        <a href="https://dli.yonsei.ac.kr/" target="_blank" rel="noopener">Data &amp; Language Intelligence (DLI) Lab</a>.
+      </p>
+
+      <nav class="links">
+        <a href="mailto:kimserin@yonsei.ac.kr">email</a>
+        <a href="https://github.com/serin-kimm" target="_blank" rel="noopener">github</a>
+        <a href="https://scholar.google.com/citations?user=Gxx8a3sAAAAJ" target="_blank" rel="noopener">scholar</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ============== RESEARCH INTERESTS ============== -->
+  <section class="research">
+    <h2 class="section-title">Research Interests <span class="num">01</span></h2>
+
+    <p class="research-desc">
+      My research focuses on agentic systems leveraging large language models (LLMs).
+      I aim to advance such agents toward enhanced capability and intelligence
+      in real-world environments.
+    </p>
+
+    <p class="research-desc-label">Recently, I have been particularly interested in:</p>
+
+    <ul class="interest-list">
+      <li>Agents for web and GUI environments</li>
+      <li>Memory architecture for LLM agents</li>
+      <li>Personalization and user simulation</li>
+    </ul>
   </section>
 
-  <section class="hero teaser">
-    <div class="container is-max-desktop">
-      <div class="hero-body">
-        <figure class="image main-figure intro-figure">
-          <img src="static/images/intro_fig.png" alt="Persona2Web overview">
-        </figure>
-        <h2 class="subtitle has-text-centered intro-copy">
-          Large language models have advanced web agents, yet current agents lack personalization capabilities.
-          In real-world scenarios, users rarely specify every detail of their intent, assuming that systems understand their implicit context.
-          To be genuinely practical, web agents must be able to interpret ambiguous queries by inferring user preferences and contexts.
-          <strong>Persona2Web</strong> is the first benchmark for evaluating personalized web agents on the real open web, built upon the
-          <strong class="has-text-primary">clarify-to-personalize</strong> principle.
-        </h2>
-      </div>
-    </div>
+  <!-- ============== PUBLICATIONS ============== -->
+  <section class="publications">
+    <h2 class="section-title">Publications <span class="num">02</span></h2>
+
+    <ul class="pub-list">
+
+      <li class="pub">
+        <!-- Teaser figure: replace src with your image path -->
+        <a class="pub-figure" href="#" target="_blank" rel="noopener">
+          <img src="figures/persona2web.png" alt="Persona2Web teaser" onerror="this.style.display='none'" />
+        </a>
+        <div>
+          <p class="pub-venue-tag">
+            <span>ICML <span class="venue-full">(International Conference on Machine Learning)</span></span>
+            <span class="dot">·</span>
+            <span class="year">2026</span>
+          </p>
+          <h3 class="pub-title">
+            <a href="#">Persona2Web: Benchmarking Personalized Web Agents for Contextual Reasoning with User History</a>
+          </h3>
+          <p class="pub-authors">
+            <strong>Serin Kim</strong>, Sangam Lee, Dongha Lee
+          </p>
+          <div class="pub-meta">
+            <a href="#">paper</a>
+            <a href="#">code</a>
+            <a href="#">data</a>
+          </div>
+        </div>
+      </li>
+
+      <li class="pub">
+        <!-- Teaser figure: replace src with your image path -->
+        <a class="pub-figure" href="https://arxiv.org/abs/2602.12187" target="_blank" rel="noopener">
+          <img src="figures/sageo_arena.png" alt="SAGEO Arena teaser" onerror="this.style.display='none'" />
+        </a>
+        <div>
+          <p class="pub-venue-tag">
+            <span>arXiv <span class="venue-full">(Preprint)</span></span>
+            <span class="dot">·</span>
+            <span class="year">2026</span>
+          </p>
+          <h3 class="pub-title">
+            <a href="https://arxiv.org/abs/2602.12187" target="_blank" rel="noopener">SAGEO Arena: A Realistic Environment for Evaluating Search-Augmented Generative Engine Optimization</a>
+          </h3>
+          <p class="pub-authors">
+            Sunghwan Kim, Wooseok Jeong, <strong>Serin Kim</strong>, Sangam Lee, Dongha Lee
+          </p>
+          <div class="pub-meta">
+            <a href="https://arxiv.org/abs/2602.12187" target="_blank" rel="noopener">paper</a>
+          </div>
+        </div>
+      </li>
+
+    </ul>
   </section>
 
-  <section class="section">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3 has-text-centered">Why Persona2Web?</h2>
-      <div class="columns is-multiline feature-grid">
-        <div class="column is-half">
-          <div class="feature-item">
-            <span class="icon is-large"><i class="fas fa-globe fa-2x"></i></span>
-            <h3 class="title is-5">Personalization on the Real Open Web</h3>
-            <p>Persona2Web is specifically designed for evaluating personalization capability of web agents on the real open web.</p>
-          </div>
+  <!-- ============== EDUCATION ============== -->
+  <section class="education">
+    <h2 class="section-title">Education <span class="num">03</span></h2>
+
+    <ul class="row-list">
+
+      <li class="row">
+        <div class="when">Sep 2025 — present</div>
+        <div class="what">
+          <span class="title">Yonsei University</span>
+          <span class="org">M.S. in Artificial Intelligence</span>
         </div>
-        <div class="column is-half">
-          <div class="feature-item">
-            <span class="icon is-large"><i class="fas fa-history fa-2x"></i></span>
-            <h3 class="title is-5">Implicit User History</h3>
-            <p>Persona2Web provides rigorously constructed user histories that reveal user preferences in implicit and indirect ways over long time spans, rather than providing them explicitly at once.</p>
-          </div>
+      </li>
+
+      <li class="row">
+        <div class="when">Mar 2021 — Sep 2025</div>
+        <div class="what">
+          <span class="title">Sungkyunkwan University</span>
+          <span class="org">B.S. in Data Science</span>
         </div>
-        <div class="column is-half">
-          <div class="feature-item">
-            <span class="icon is-large"><i class="fas fa-comments fa-2x"></i></span>
-            <h3 class="title is-5">Clarify-to-Personalize Queries</h3>
-            <p>Persona2Web deliberately embeds ambiguity, requiring agents to infer implicit contexts from user history without explicit cues.</p>
-          </div>
-        </div>
-        <div class="column is-half">
-          <div class="feature-item">
-            <span class="icon is-large"><i class="fas fa-route fa-2x"></i></span>
-            <h3 class="title is-5">Reasoning-aware Evaluation</h3>
-            <p>Beyond simple task completion, Persona2Web examines full trajectories and reasoning traces through structured rubrics to distinguish personalization failures from navigation failures.</p>
-          </div>
-        </div>
-      </div>
-    </div>
+      </li>
+
+    </ul>
   </section>
 
-  <section class="section hero is-light">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3 has-text-centered">Constructing Persona2Web</h2>
-      <figure class="image main-figure method-figure">
-        <img src="static/images/main_fig.png" alt="Persona2Web construction pipeline">
-      </figure>
-      <div class="content construction-steps">
-        <p>
-          Persona2Web is constructed through a multi-stage generation pipeline that starts from 50 distinct user profiles with demographic information and domain-specific preferences. Based on these profiles, event seeds are generated to define recurring activity patterns, then decomposed into web actions and dispersed across different temporal points over a year. The resulting user history is structured with timestamp, type, object, and website, so that preferences are revealed implicitly through behavioral patterns rather than explicit statements. Finally, query sets are created by first generating clear queries with all explicit cues, then masking website and preference constraints to produce ambiguous queries under the clarify-to-personalize principle.
-        </p>
-      </div>
-    </div>
+  <!-- ============== EXPERIENCE ============== -->
+  <section class="experience">
+    <h2 class="section-title">Experience <span class="num">04</span></h2>
+
+    <ul class="row-list">
+
+      <li class="row">
+        <div class="when">Jan 2025 — Aug 2025</div>
+        <div class="what">
+          <span class="title">Research Intern</span>
+          <span class="org">Yonsei University DLI Lab</span>
+        </div>
+      </li>
+
+      <li class="row">
+        <div class="when">Jan 2024 — Jan 2025</div>
+        <div class="what">
+          <span class="title">Research Intern</span>
+          <span class="org">SKKU AI Lab</span>
+        </div>
+      </li>
+
+      <li class="row">
+        <div class="when">Aug 2024 — Dec 2024</div>
+        <div class="what">
+          <span class="title">Camper, Computer Vision Track</span>
+          <span class="org">Naver Boostcamp AI Tech</span>
+        </div>
+      </li>
+
+      <li class="row">
+        <div class="when">Feb 2023 — Mar 2024</div>
+        <div class="what">
+          <span class="title">President &amp; Team Lead</span>
+          <span class="org">SKKAI · SKKU Data &amp; AI Society</span>
+        </div>
+      </li>
+
+    </ul>
   </section>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="columns is-centered">
-        <div class="column is-8">
-          <div class="content has-text-centered">
-            <p>
-              This page was built using the
-              <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank" rel="noreferrer">Academic Project Page Template</a>,
-              adopted from the <a href="https://nerfies.github.io" target="_blank" rel="noreferrer">Nerfies</a> project page.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
+  <!-- ============== FOOTER ============== -->
+  <footer>
+    <span>© 2026 Serin Kim</span>
+    <span>Last updated · May 2026</span>
   </footer>
+
+</div>
 </body>
 </html>
